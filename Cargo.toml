@@ -26,6 +26,7 @@ antarez-eas-client = { path = "../antarez-eas-client" }
 antarez-s3-storage = { path = "../antarez-s3-storage" }
 
 # Utilities
+futures = "0.3"
 uuid = { version = "1", features = ["v4", "serde"] }
 chrono = { version = "0.4", features = ["serde"] }
 thiserror = "2"

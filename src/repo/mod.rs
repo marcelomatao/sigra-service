@@ -1,2 +1,3 @@
-//! Database repository layer — CRUD operations.
-// TODO: Step 5
+pub mod documents;
+
+pub use documents::DocumentRepo;
