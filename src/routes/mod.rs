@@ -1,4 +1,5 @@
 pub mod documents;
+pub mod envelopes;
 pub mod health;
 
 use axum::Router;
@@ -8,4 +9,5 @@ pub fn router() -> Router<AppState> {
     Router::new()
         .merge(health::routes())
         .merge(documents::routes())
+        .merge(envelopes::routes())
 }
