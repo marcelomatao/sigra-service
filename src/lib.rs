@@ -38,6 +38,12 @@ pub async fn app() -> Result<Router, Box<dyn std::error::Error>> {
 
     let st = state::AppState { db, s3, config };
 
+    services::anchoring::spawn_anchor_loop(
+        st.db.clone(),
+        Arc::new(st.config.clone()),
+        st.config.anchor_interval_secs,
+    );
+
     Ok(routes::router()
         .with_state(st)
         .layer(TraceLayer::new_for_http())
