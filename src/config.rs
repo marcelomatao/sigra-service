@@ -23,6 +23,10 @@ pub struct AppConfig {
     pub eas_private_key: String,
     /// Target chain ID (default: 8453 = Base).
     pub eas_chain_id: u64,
+    /// EAS schema UID to attest against (bytes32 hex, 0x-prefixed).
+    pub eas_schema_uid: String,
+    /// How often the anchor loop fires, in seconds (default: 3600).
+    pub anchor_interval_secs: u64,
     /// Presigned URL expiry in seconds.
     pub presigned_url_expiry_secs: u64,
 }
@@ -43,6 +47,10 @@ impl AppConfig {
             eas_rpc_url: env_required("EAS_RPC_URL"),
             eas_private_key: env_required("EAS_PRIVATE_KEY"),
             eas_chain_id: env_or("EAS_CHAIN_ID", "8453").parse().expect("invalid EAS_CHAIN_ID"),
+            eas_schema_uid: env_required("EAS_SCHEMA_UID"),
+            anchor_interval_secs: env_or("ANCHOR_INTERVAL_SECS", "3600")
+                .parse()
+                .expect("invalid ANCHOR_INTERVAL_SECS"),
             presigned_url_expiry_secs: env_or("PRESIGNED_URL_EXPIRY_SECS", "3600")
                 .parse()
                 .expect("invalid PRESIGNED_URL_EXPIRY_SECS"),
