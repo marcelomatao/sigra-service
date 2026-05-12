@@ -2,6 +2,7 @@ pub mod documents;
 pub mod envelopes;
 pub mod health;
 pub mod signing;
+pub mod verify;
 
 use axum::Router;
 use crate::state::AppState;
@@ -12,4 +13,5 @@ pub fn router() -> Router<AppState> {
         .merge(documents::routes())
         .merge(envelopes::routes())
         .merge(signing::routes())
+        .merge(verify::routes())
 }
